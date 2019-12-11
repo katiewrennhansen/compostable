@@ -1,19 +1,24 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import UsersApiService from '../../services/users-api-service'
 
 class Register extends Component {
 
     handleRegistration = (e) => {
         e.preventDefault()
         const newUser = {
-            name: e.target.name.value,
-            email: e.target.email.value,
             username: e.target.username.value,
-            password: e.target.password.value
+            password: e.target.password.value,
+            name: e.target.name.value,
+            email: e.target.email.value
         }
-
-        console.log(newUser)
-        this.props.history.push('/dashboard')
+        UsersApiService.postUser(newUser)
+            .then(res => {
+                this.props.history.push('/login')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
   render(){

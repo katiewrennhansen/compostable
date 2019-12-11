@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import TokenService from '../../../services/token-service'
 
 class Dashboard extends Component {
     constructor(props){
@@ -9,10 +10,16 @@ class Dashboard extends Component {
         }
     }
 
+
+    logout = () => {
+        TokenService.clearToken()
+        sessionStorage.clear()
+    }
+
     loggedIn(){
         return (
             <>
-                <Link to='/'>Logout</Link>
+                <Link onClick={this.logout} to='/'>Logout</Link>
             </>
         )
     }
@@ -31,7 +38,7 @@ class Dashboard extends Component {
             <nav>
                 <Link className="logo" to='/'>Home</Link>
                 <div className="nav-links">
-                    {(this.state.auth) ? this.loggedIn() : this.loggedOut()}
+                    {TokenService.getToken() ? this.loggedIn() : this.loggedOut()}
                 </div>
             </nav>
         );

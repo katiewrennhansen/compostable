@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import AuthService from '../../services/auth-service'
+import TokenService from '../../services/token-service'
+import Context from '../../contexts/Context'
 
 class Login extends Component {
+    static contextType = Context 
 
     handleLogin = (e) => {
         e.preventDefault()
@@ -9,9 +13,17 @@ class Login extends Component {
             username: e.target.username.value,
             password: e.target.password.value
         }
-
-        console.log(authUser)
-        this.props.history.push('/dashboard')
+        AuthService.postLogin(authUser)
+            .then(res => {
+                TokenService.saveToken(res.token)
+                sessionStorage.setItem('user', res.user.name)
+                this.props.history.history.push('/dashboard')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        e.target.username.value = ''
+        e.target.password.value = ''
     }
 
 

@@ -6,7 +6,7 @@ class Dashboard extends Component {
     return (
       <div className="App">
         <h1>Dashboard</h1>
-        <p>Welcome user</p>
+        <p>Welcome {sessionStorage.getItem('user')}</p>
       </div>
     );
   }

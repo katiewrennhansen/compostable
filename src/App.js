@@ -6,12 +6,32 @@ import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Dashboard from './components/pages/Dashboard';
 import Nav from './components/pages/utils/Nav'
+import Context from './contexts/Context'
 import './App.css';
 
 
 class App extends Component {
+  static contextType = Context
+
+  constructor(props){
+    super(props)
+    this.state = {
+      user_id: ''
+    }
+  }
+
+  setId = (user_id) => {
+    this.setState({
+      user_id
+    })
+  }
+
   render(){
+    const contextValue = {
+        user_id: this.state.user_id
+    }
     return (
+      <Context.Provider value={contextValue}>
       <div className="App">
         <Nav />
         <div className="content">
@@ -22,7 +42,16 @@ class App extends Component {
             />
             <Route 
               path='/login'
-              component={Login}
+              render={(history) => {
+                return (
+                <Login 
+                  setId={this.setState}
+                  history={history}
+                />
+                )
+              }}
+              // component={Login}
+
             />
             <Route
               path='/register'
@@ -35,6 +64,7 @@ class App extends Component {
         </Switch>
         </div>
       </div>
+      </Context.Provider>
     );
   }
   
