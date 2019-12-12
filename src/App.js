@@ -7,6 +7,8 @@ import Register from './components/pages/Register';
 import Dashboard from './components/pages/Dashboard';
 import Nav from './components/pages/utils/Nav'
 import Context from './contexts/Context'
+import PrivateRoute from './components/pages/utils/PrivateRoute'
+import PublicRoute from './components/pages/utils/PublicRoute'
 import './App.css';
 
 
@@ -40,24 +42,15 @@ class App extends Component {
               exact path='/'
               component={Landing}
             />
-            <Route 
+            <PublicRoute
               path='/login'
-              render={(history) => {
-                return (
-                <Login 
-                  setId={this.setState}
-                  history={history}
-                />
-                )
-              }}
-              // component={Login}
-
+              component={Login}
             />
             <Route
               path='/register'
               component={Register}
             />
-            <Route
+            <PrivateRoute
               path='/dashboard'
               component={Dashboard}
             />

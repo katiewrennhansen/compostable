@@ -19,6 +19,7 @@ class Dashboard extends Component {
     loggedIn(){
         return (
             <>
+                <Link to='/dashboard'>Dashboard</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
         )

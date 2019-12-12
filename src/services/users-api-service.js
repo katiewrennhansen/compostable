@@ -4,7 +4,10 @@ import TokenService from '../services/token-service'
 const UsersApiService = {
     getUser(){
         return fetch(`${config.API_ENDPOINT}/users`, {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
         })
         .then(res => 
             (!res.ok)

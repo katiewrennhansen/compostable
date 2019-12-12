@@ -16,8 +16,7 @@ class Login extends Component {
         AuthService.postLogin(authUser)
             .then(res => {
                 TokenService.saveToken(res.token)
-                sessionStorage.setItem('user', res.user.name)
-                this.props.history.history.push('/dashboard')
+                this.props.history.push('/dashboard')
             })
             .catch(error => {
                 console.log(error)
