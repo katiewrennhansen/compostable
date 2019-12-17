@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import Landing from './components/pages/Landing';
-import Login from './components/pages/Login';
-import Register from './components/pages/Register';
-import Dashboard from './components/pages/Dashboard';
-import Nav from './components/pages/utils/Nav'
+import Landing from './components/Landing';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import Nav from './components/utils/Nav'
 import Context from './contexts/Context'
-import PrivateRoute from './components/pages/utils/PrivateRoute'
-import PublicRoute from './components/pages/utils/PublicRoute'
+import PrivateRoute from './components/utils/PrivateRoute'
+import PublicRoute from './components/utils/PublicRoute'
+import Map from './components/Map'
+import Messages from './components/Messages'
+import NotFound from './components/NotFound'
 import './App.css';
 
 
@@ -50,9 +53,20 @@ class App extends Component {
               path='/register'
               component={Register}
             />
+            <Route
+              path='/map'
+              component={Map}
+            />
             <PrivateRoute
               path='/dashboard'
               component={Dashboard}
+            />
+            <PrivateRoute
+              path='/messages'
+              component={Messages}
+            />
+            <Route
+              component={NotFound}
             />
         </Switch>
         </div>

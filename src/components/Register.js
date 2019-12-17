@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import UsersApiService from '../../services/users-api-service'
+import UsersApiService from '../services/users-api-service'
 
 class Register extends Component {
 

@@ -1,6 +1,6 @@
 nav {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 1fr;
     height: 60px;
     background: gray;
 }
@@ -18,12 +18,11 @@ nav a {
 .nav-links {
     align-self: center;
     margin-right: 50px;
-    justify-self: flex-end;
+    justify-self: space-evenly;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, auto);
+    width: 100%;
 }
-
-
 
 form {
     background: white;
@@ -35,7 +34,8 @@ form {
     text-align: left;
 }
 
-input {
+input,
+textarea {
     display: block;
     padding: 10px 12px;
     border-radius: 5px;
@@ -57,4 +57,35 @@ input[type="submit"]:hover {
 
 .landing {
     padding-top: 30vh;
+}
+
+
+
+.map {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.icon {
+    color: rgb(10, 194, 40);
+}
+
+.click-btn {
+    background: none;
+    border: none;
+}
+
+.popup {
+    width: 300px;
+    height: 100vh;
+    background: rgb(222, 249, 207);
+    box-shadow: 1px 1px 3px lightgray;
+    position: relative;
+    padding: 30px;
+}
+
+.close-icon {
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }

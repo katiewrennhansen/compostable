@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import AuthService from '../../services/auth-service'
-import TokenService from '../../services/token-service'
-import Context from '../../contexts/Context'
+import AuthService from '../services/auth-service'
+import TokenService from '../services/token-service'
+import Context from '../contexts/Context'
 
 class Login extends Component {
     static contextType = Context 

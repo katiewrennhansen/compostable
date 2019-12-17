@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import TokenService from '../../../services/token-service'
+import TokenService from '../../services/token-service'
 
 class Dashboard extends Component {
     constructor(props){
@@ -19,7 +19,9 @@ class Dashboard extends Component {
     loggedIn(){
         return (
             <>
+                <Link to='/map'>Map</Link>
                 <Link to='/dashboard'>Dashboard</Link>
+                <Link to='/messages'>Messages</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
         )
@@ -28,8 +30,10 @@ class Dashboard extends Component {
     loggedOut(){
         return (
             <>
-                <Link to='/login'>Login</Link>
+                <div></div>
+                <Link to='/map'>Map</Link>
                 <Link to='/register'>Register</Link>
+                <Link to='/login'>Login</Link>
             </>
         )
     }
