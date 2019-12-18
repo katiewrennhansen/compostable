@@ -6,7 +6,9 @@ class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      userdata: ''
+      userdata: '',
+      editaccount: false,
+      addlocation: false
     }
   }
 
@@ -59,11 +61,11 @@ class Dashboard extends Component {
   render(){
     return (
       <div className="App">
-        <h1>Dashboard</h1>
-        <p>Welcome {this.state.userdata.name}</p>
+        <h1>Welcome {this.state.userdata.name}</h1>
         <p>{this.state.userdata.email}</p>
         <p>{this.state.userdata.username}</p>
-
+        <button>Edit Information</button>
+        <button>Add Location</button>
         <form onSubmit={(e) => {this.handleFormSubmit(e)}}>
           <h2>Add Location</h2>
 

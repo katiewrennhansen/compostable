@@ -5,6 +5,10 @@ nav {
     background: gray;
 }
 
+h1 {
+    padding-top: 100px;
+}
+
 nav a {
     color: white;
     text-decoration: none;
@@ -37,10 +41,10 @@ form {
 input,
 textarea {
     display: block;
-    padding: 10px 12px;
+    padding: 10px 0;
     border-radius: 5px;
     border: 1px solid rgb(176, 176, 176);
-    width: 90%;
+    width: 100%;
     margin: 5px 0 10px;
     font-size: 16px;
 }
@@ -118,4 +122,37 @@ td {
 
 .hidden {
     display: none;
+}
+
+.messages {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-template-rows: 1fr 5fr;
+}
+
+.messages h1 {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+.messages-nav {
+    display: grid;
+    grid-template-rows: repeat(2, 50px);
+    justify-items: flex-start;
+    padding: 50px 60px;
+}
+
+.single-message {
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 1px 1px 3px lightgray;
+}
+
+form.reply {
+    margin-top: 30px;
+    width: 60%;
 }

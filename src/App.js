@@ -63,12 +63,8 @@ class App extends Component {
               component={Dashboard}
             />
             <PrivateRoute
-              exact path='/messages'
+              path='/messages'
               component={Messages}
-            />
-            <PrivateRoute
-              exact path='/messages/:id'
-              component={Message}
             />
             <Route
               component={NotFound}

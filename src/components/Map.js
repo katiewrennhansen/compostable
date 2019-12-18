@@ -9,7 +9,7 @@ import messages from '../messages'
 
 
 
-export default function Map() {
+export default function Map(props) {
     const [viewport, setViewport] = useState({
         latitude: 35.7883046,
         longitude: -78.7811964,
@@ -92,11 +92,14 @@ export default function Map() {
                                                     body: e.target.message.value,
                                                     read: false,
                                                     sender_id: 1,
-                                                    reciever_id: 1,
+                                                    reciever_id: 4,
                                                     date_recieved: 'December 18, 2019'
                                                 }
-                                                console.log(newMessage)
                                                 messages.push(newMessage)
+                                                e.target.title.value = ""
+                                                e.target.message.value = ""
+                                                const form = document.getElementById('message-form')
+                                                form.classList.toggle('hidden')
                                             }}>
                                                 <h3>Send {selected.name} a Message</h3>
                                                 <input type="text" name="title" placeholder="Subject"/>

@@ -20,7 +20,7 @@ class Dashboard extends Component {
         return (
             <>
                 <Link to='/map'>Map</Link>
-                <Link to='/dashboard'>Dashboard</Link>
+                <Link to='/dashboard'>Account</Link>
                 <Link to='/messages'>Messages</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
