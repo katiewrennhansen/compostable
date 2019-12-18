@@ -30,7 +30,7 @@ class Login extends Component {
     return (
       <>
         <form onSubmit={(e) => this.handleLogin(e)}>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <label htmlFor="username">Username: </label>
             <input 
                 type="text"

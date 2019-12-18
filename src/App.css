@@ -156,3 +156,16 @@ form.reply {
     margin-top: 30px;
     width: 60%;
 }
+
+.user-info,
+.location {
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.location form,
+.user-info form {
+    margin: 40px auto;
+    width: 100%;
+}

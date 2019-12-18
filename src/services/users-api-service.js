@@ -29,17 +29,19 @@ const UsersApiService = {
                 : res.json()
         )
     },
-    getUserById(id){
-        return fetch(`${config.API_ENDPOINT}/users/${id}`, {
-            method: 'GET',
+    updateUser(obj){
+        return fetch(`${config.API_ENDPOINT}/users`, {
+            method: 'PATCH',
             headers: {
+                'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getToken()}`
-            }
+            },
+            body: JSON.stringify(obj)
         })
         .then(res => 
             (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
-                : res.json()
+                : res
         )
     },
 }
