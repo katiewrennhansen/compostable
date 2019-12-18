@@ -5,6 +5,7 @@ import data from '../data'
 import RoomIcon from '@material-ui/icons/Room';
 import CloseIcon from '@material-ui/icons/Close';
 import TokenService from '../services/token-service'
+import MessagesService from '../services/messages-service'
 import messages from '../messages'
 
 
@@ -88,14 +89,13 @@ export default function Map(props) {
                                                 e.preventDefault()
                                                 const newMessage = {
                                                     id: 200,
-                                                    title: e.target.title.value,
+                                                    subject: e.target.title.value,
                                                     body: e.target.message.value,
                                                     read: false,
-                                                    sender_id: 1,
-                                                    reciever_id: 4,
+                                                    reciever_id: 1,
                                                     date_recieved: 'December 18, 2019'
                                                 }
-                                                messages.push(newMessage)
+                                                MessagesService.postMessage(newMessage)
                                                 e.target.title.value = ""
                                                 e.target.message.value = ""
                                                 const form = document.getElementById('message-form')
@@ -108,7 +108,7 @@ export default function Map(props) {
                                             </form>
                                         </div>
                                     )
-                                    : (<Link to="/login">Login to View Details</Link>)
+                                    : (<Link to="/login">Login to Start Composting!</Link>)
                             }
                         </div>
                         ) 

@@ -25,7 +25,7 @@ class Register extends Component {
     return (
       <>
         <form onSubmit={(e) => {this.handleRegistration(e)}}>
-            <h1>Register</h1>
+            <h2>Register</h2>
             <div className="form-content">
                 <label htmlFor="username">Name: </label>
                 <input 

@@ -7,12 +7,12 @@ class Message extends Component {
         e.preventDefault()
         const newMessage = {
             id: 101,
-            title: e.target.title.value,
+            subject: e.target.title.value,
             body: e.target.message.value,
             read: false,
             sender_id: 1,
             reciever_id: 4,
-            date_recieved: 'December 18, 2019'
+            date_created: 'December 18, 2019'
         }
         messages.push(newMessage)
         e.target.title.value = ""
@@ -27,8 +27,8 @@ class Message extends Component {
                 {messages.map(m => {
                     if(m.id == id){
                         return (
-                            <>
-                                <div className="single-message" key={m.id}>
+                            <div key={m.id}>
+                                <div className="single-message">
                                     <p>{m.title}</p>
                                     <p>{m.body}</p>
                                     <p>{m.date_recieved}</p>
@@ -40,7 +40,7 @@ class Message extends Component {
                                     <textarea name="message" rows="10" placeholder="Message Body Here"/>
                                     <input type="submit" />
                                 </form>
-                            </>
+                            </div>
                         )
                     }
                 })}

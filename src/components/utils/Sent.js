@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import messages from '../../messages'
+import MessagesService from '../../services/messages-service'
 
 class Inbox extends Component {
 
-  setRead(id){
-    messages.map(m => {
-      if(m.id == id){
-        m.read = true
-      }
+  constructor(props){
+    super(props)
+    this.state = {
+      messages: []
+    }
+  }
+
+  setMessages = messages => {
+    this.setState({
+      messages
     })
+  }
+
+  componentDidMount(){
+    MessagesService.getMessages()
+      .then(data => {
+        this.setMessages(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   render(){
@@ -25,7 +40,7 @@ class Inbox extends Component {
             </tr>
           </thead>
           <tbody>
-            {messages.map(m => {
+            {this.state.messages.map(m => {
                 if(m.sender_id == 1){
                   return (
                     <tr key={m.id}>
@@ -33,9 +48,9 @@ class Inbox extends Component {
                         <input type="checkbox" />
                       </td>
                       <td><Link to={`/messages/${m.id}`}>To: {m.reciever_id}</Link></td>
-                      <td>{m.title}</td>
+                      <td>{m.subject}</td>
                       <td>{m.body}</td>
-                      <td>{m.date_recieved}</td>
+                      <td>{m.date_created}</td>
                     </tr>
                   )
                 }

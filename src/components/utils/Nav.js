@@ -41,7 +41,7 @@ class Dashboard extends Component {
     render(){
         return (
             <nav>
-                <Link className="logo" to='/'>Home</Link>
+                <Link className="logo" to='/'>Compostable</Link>
                 <div className="nav-links">
                     {TokenService.getToken() ? this.loggedIn() : this.loggedOut()}
                 </div>
