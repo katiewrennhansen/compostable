@@ -45,6 +45,10 @@ textarea {
     font-size: 16px;
 }
 
+input[type="submit"]{
+    width: 100%;
+}
+
 input[type="submit"]:hover {
     cursor: pointer;
     box-shadow: 1px 1px 3px gray;
@@ -58,8 +62,6 @@ input[type="submit"]:hover {
 .landing {
     padding-top: 30vh;
 }
-
-
 
 .map {
     width: 100%;
@@ -88,4 +90,32 @@ input[type="submit"]:hover {
     position: absolute;
     top: 30px;
     right: 30px;
+}
+
+table {
+    border: 1px solid gray;
+    width: 70%;
+    margin: 50px auto;
+}
+
+.heading th {
+    padding-bottom: 20px;
+}
+
+th, 
+td {
+    text-align: left;
+}
+
+.unread td {
+    font-weight: bold;
+}
+
+#message-form {
+    width: 85%;
+    margin: 40px auto;
+}
+
+.hidden {
+    display: none;
 }

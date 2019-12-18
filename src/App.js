@@ -11,6 +11,7 @@ import PrivateRoute from './components/utils/PrivateRoute'
 import PublicRoute from './components/utils/PublicRoute'
 import Map from './components/Map'
 import Messages from './components/Messages'
+import Message from './components/utils/Message'
 import NotFound from './components/NotFound'
 import './App.css';
 
@@ -62,8 +63,12 @@ class App extends Component {
               component={Dashboard}
             />
             <PrivateRoute
-              path='/messages'
+              exact path='/messages'
               component={Messages}
+            />
+            <PrivateRoute
+              exact path='/messages/:id'
+              component={Message}
             />
             <Route
               component={NotFound}

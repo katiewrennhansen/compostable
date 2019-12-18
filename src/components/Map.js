@@ -5,6 +5,8 @@ import data from '../data'
 import RoomIcon from '@material-ui/icons/Room';
 import CloseIcon from '@material-ui/icons/Close';
 import TokenService from '../services/token-service'
+import messages from '../messages'
+
 
 
 export default function Map() {
@@ -73,12 +75,34 @@ export default function Map() {
                                     setSelected(null)
                                 }}/>
                             <h2>{selected.name}</h2>
-                            { 
+                            {
                                 TokenService.getToken() 
                                     ? (
                                         <div>
                                             <p>{selected.description}</p>
-                                            <button>Message</button>
+                                            <button onClick={function(){
+                                                const form = document.getElementById('message-form')
+                                                form.classList.toggle('hidden')
+                                            }}>Message</button>
+                                            <form id="message-form" className="hidden" onSubmit={(e) => {
+                                                e.preventDefault()
+                                                const newMessage = {
+                                                    id: 200,
+                                                    title: e.target.title.value,
+                                                    body: e.target.message.value,
+                                                    read: false,
+                                                    sender_id: 1,
+                                                    reciever_id: 1,
+                                                    date_recieved: 'December 18, 2019'
+                                                }
+                                                console.log(newMessage)
+                                                messages.push(newMessage)
+                                            }}>
+                                                <h3>Send {selected.name} a Message</h3>
+                                                <input type="text" name="title" placeholder="Subject"/>
+                                                <textarea name="message" placeholder="Message Body Here"/>
+                                                <input type="submit" />
+                                            </form>
                                         </div>
                                     )
                                     : (<Link to="/login">Login to View Details</Link>)
