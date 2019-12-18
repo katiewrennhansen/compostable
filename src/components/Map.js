@@ -92,8 +92,8 @@ export default function Map(props) {
                                                     subject: e.target.title.value,
                                                     body: e.target.message.value,
                                                     read: false,
-                                                    reciever_id: 1,
-                                                    date_recieved: 'December 18, 2019'
+                                                    // reciever_id: e.target.id.value
+                                                    reciever_id: 5
                                                 }
                                                 MessagesService.postMessage(newMessage)
                                                 e.target.title.value = ""
@@ -104,6 +104,7 @@ export default function Map(props) {
                                                 <h3>Send {selected.name} a Message</h3>
                                                 <input type="text" name="title" placeholder="Subject"/>
                                                 <textarea name="message" placeholder="Message Body Here"/>
+                                                <input type="hidden" name="id" value={selected.id} />
                                                 <input type="submit" />
                                             </form>
                                         </div>

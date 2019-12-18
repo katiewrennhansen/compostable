@@ -2,8 +2,21 @@ import TokenService from './token-service'
 import config from '../config'
 
 const MessagesService = {
-    getMessages(){
-        return fetch(`${config.API_ENDPOINT}/messages`, {
+    getNewMessages(){
+        return fetch(`${config.API_ENDPOINT}/messages/new`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+        )
+    },
+    getSentMessages(){
+        return fetch(`${config.API_ENDPOINT}/messages/sent`, {
             method: 'GET',
             headers: {
                 'Authorization': `bearer ${TokenService.getToken()}`
@@ -43,6 +56,19 @@ const MessagesService = {
             (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
                 : res
+        )
+    },
+    getMessageById(id){
+        return fetch(`${config.API_ENDPOINT}/messages/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
         )
     },
 }

@@ -17,7 +17,7 @@ class Inbox extends Component {
   }
 
   componentDidMount(){
-    MessagesService.getMessages()
+    MessagesService.getNewMessages()
       .then(data => {
         this.setMessages(data)
       })
@@ -56,7 +56,7 @@ class Inbox extends Component {
           </thead>
           <tbody>
               {this.state.messages.map(m => {
-                if(m.read === false && m.reciever_id == 1){
+                if(m.read === false){
                   return (
                     <tr key={m.id} className="unread">
                       <td>
@@ -64,7 +64,7 @@ class Inbox extends Component {
                       </td>
                       <td><Link to={`/messages/${m.id}`} onClick={() => this.setRead(m.id)}>{m.subject}</Link></td>
                       <td>{m.body}</td>
-                      <td>{m.date_created}</td>
+                      <td>{m.date_created.slice(0, 10)}</td>
                     </tr>
                   )
                 }
@@ -90,7 +90,7 @@ class Inbox extends Component {
                       </td>
                       <td><Link to={`/messages/${m.id}`}>{m.subject}</Link></td>
                       <td>{m.body}</td>
-                      <td>{m.date_created}</td>
+                      <td>{m.date_created.slice(0, 10)}</td>
                     </tr>
                   )
                 }
