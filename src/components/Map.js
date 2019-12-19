@@ -6,7 +6,7 @@ import RoomIcon from '@material-ui/icons/Room';
 import CloseIcon from '@material-ui/icons/Close';
 import TokenService from '../services/token-service'
 import MessagesService from '../services/messages-service'
-import messages from '../messages'
+import LocationsService from '../services/location-service'
 
 
 
@@ -21,6 +21,7 @@ export default function Map(props) {
 
     const [selected, setSelected] = useState(null)
 
+    const [locations, setLocations] = useState([])
 
     useEffect(() => {
         const listener = e => {
@@ -34,9 +35,9 @@ export default function Map(props) {
             window.removeEventListener("keydown", listener)
         }
     }, []);
-
+    
     return (
-      <div className="map">
+      <div className="map-container">
         <div id="map">
           <ReactMapGL 
             {...viewport}
@@ -44,13 +45,22 @@ export default function Map(props) {
             onViewportChange={viewport => setViewport(viewport)}
             mapStyle="mapbox://styles/kawrenn/ck49zf8ug0j0d1cqiglffmllj"
             className="map"
+            onLoad={() => {
+                LocationsService.getAllLocations()
+                    .then(data => {
+                        setLocations(data)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }}
           >
               {
-                  data.map(item => (
+              locations.map(item => (
                         <Marker 
                             key={item.id} 
-                            latitude={item.location.lat} 
-                            longitude={item.location.lon}
+                            latitude={Number(item.latitude)} 
+                            longitude={Number(item.longitude)}
                         >
                             <button className='click-btn' onClick={(e) => {
                                 e.preventDefault()
@@ -66,8 +76,8 @@ export default function Map(props) {
                     {selected ? (
                         <div
                             className="popup"
-                            latitude={selected.location.lat} 
-                            longitude={selected.location.lon}
+                            latitude={selected.latitude} 
+                            longitude={selected.longitude}
                         >
                             <CloseIcon
                                 fontSize="large"
@@ -75,7 +85,7 @@ export default function Map(props) {
                                 onClick={() => {
                                     setSelected(null)
                                 }}/>
-                            <h2>{selected.name}</h2>
+                            <h2>{selected.description}</h2>
                             {
                                 TokenService.getToken() 
                                     ? (
@@ -92,7 +102,6 @@ export default function Map(props) {
                                                     subject: e.target.title.value,
                                                     body: e.target.message.value,
                                                     read: false,
-                                                    // reciever_id: e.target.id.value
                                                     reciever_id: 5
                                                 }
                                                 MessagesService.postMessage(newMessage)

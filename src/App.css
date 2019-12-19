@@ -100,6 +100,7 @@ table {
     border: 1px solid gray;
     width: 70%;
     margin: 50px auto;
+    border-collapse: collapse;
 }
 
 .heading th {
@@ -109,10 +110,15 @@ table {
 th, 
 td {
     text-align: left;
+    padding: 5px;
 }
 
 .unread td {
     font-weight: bold;
+}
+
+td {
+    border-top: 1px solid lightgray;
 }
 
 #message-form {
