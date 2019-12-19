@@ -15,6 +15,19 @@ const UsersApiService = {
                 : res.json()
         )
     },
+    getUserById(id){
+        return fetch(`${config.API_ENDPOINT}/users/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+        )
+    },
     postUser(obj){
         return fetch(`${config.API_ENDPOINT}/users`, {
             method: 'POST',

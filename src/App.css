@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 nav {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -174,4 +178,11 @@ form.reply {
 .user-info form {
     margin: 40px auto;
     width: 100%;
+}
+
+.user-address {
+    border: 1px solid gray;
+    margin: 20px 0;
+    padding: 20px;
+    width: 40%;
 }

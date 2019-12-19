@@ -43,16 +43,27 @@ class Message extends Component {
         this.props.history.push('/messages')
     }
 
+    deleteMessage = (id) => {
+      MessagesService.deleteMessage(id)
+        .then(data => {
+          this.props.history.push('/messages')
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+
     render(){
         const m = this.state.messages
-        const created = m.date_created
         return (
             <div>
                 <div key={m.id}>
                     <div className="single-message">
-                        <p>{m.subject}</p>
+                        <p>From: {m.name}</p>
+                        <p>Subject: {m.subject}</p>
                         <p>{m.body}</p>
-                        <p>{created}</p>
+                        <p>{m.date_created}</p>
+                        <button onClick={() => this.deleteMessage(m.id)}>Delete</button>
                     </div>
                     <form className="reply" onSubmit={(e) => this.submitMessage(e)}>
                         <label htmlFor="title">Subject</label>

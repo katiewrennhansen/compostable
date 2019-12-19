@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import MessagesService from '../../services/messages-service'
 
-class Inbox extends Component {
+class Sent extends Component {
 
   constructor(props){
     super(props)
@@ -20,6 +20,7 @@ class Inbox extends Component {
   componentDidMount(){
     MessagesService.getSentMessages()
       .then(data => {
+        console.log(data)
         this.setMessages(data)
       })
       .catch(error => {
@@ -47,7 +48,7 @@ class Inbox extends Component {
                       <td>
                         <input type="checkbox" />
                       </td>
-                      <td><Link to={`/messages/${m.id}`}>To: {m.reciever_id}</Link></td>
+                      <td><Link to={`/messages/${m.id}`}>To: {m.name}</Link></td>
                       <td>{m.subject}</td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>
@@ -62,4 +63,4 @@ class Inbox extends Component {
   
 }
 
-export default Inbox;
+export default Sent;

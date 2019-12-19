@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserApiService from '../services/users-api-service'
-import data from '../data'
+import LocationsService from '../services/location-service'
 
 class Dashboard extends Component {
   constructor(props){
@@ -8,13 +8,20 @@ class Dashboard extends Component {
     this.state = {
       userdata: '',
       editaccount: false,
-      addlocation: false
+      addlocation: false,
+      locations: []
     }
   }
 
   setUserData = userdata => {
     this.setState({
       userdata
+    })
+  }
+
+  setLocations = locations => {
+    this.setState({
+      locations
     })
   }
 
@@ -26,12 +33,19 @@ class Dashboard extends Component {
       .catch(error => {
         console.log(error)
       })
+    LocationsService.getLocationsForUser()
+      .then(data => {
+        this.setLocations(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   handleFormSubmit = e => {
     e.preventDefault()
     let newData = {}
-    const [ name, address, city, state, zip_code, description ] = e.target
+    const [ address, city, state, zip_code, description ] = e.target
     const newAddress = `${address.value}, ${city.value} ${state.value}, ${zip_code.value}`
     const endpoint = `http://open.mapquestapi.com/geocoding/v1/address?key=6NILxdy4fJCirPAAZVE4p556vyeQAOi9&location=${newAddress}`
     return fetch(endpoint)
@@ -40,15 +54,18 @@ class Dashboard extends Component {
       })
       .then(resJson => {
           newData = {
-            id: Math.floor(Math.random() * 1000),
-            name: name.value,
-            location: {
-              lat: resJson.results[0].locations[0].displayLatLng.lat,
-              lon: resJson.results[0].locations[0].displayLatLng.lng,
-            },
-            description: description.value
+            latitude: resJson.results[0].locations[0].displayLatLng.lat,
+            longitude: resJson.results[0].locations[0].displayLatLng.lng,
+            description: description.value,
+            address: address.value,
+            city: city.value,
+            state: state.value,
+            zip_code: zip_code.value
           }
-          data.push(newData)
+          LocationsService.postLocation(newData)
+            .catch(error => {
+              console.log(error)
+            })
       })
       .then(() => {
         this.props.history.push('/map')
@@ -92,8 +109,6 @@ class Dashboard extends Component {
       name: e.target.name.value,
       email: e.target.email.value
     }
-    
-    console.log(updatedUser)
     UserApiService.updateUser(updatedUser)
       .then(data => {
         UserApiService.getUser()
@@ -104,14 +119,25 @@ class Dashboard extends Component {
     this.showEditInformation()
   }
 
+  deleteLocation = (id) => {
+    LocationsService.deleteLocation(id)
+      .then(data => {
+        LocationsService.getLocationsForUser()
+          .then(data => {
+            this.setLocations(data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      })
+  }
+
   render(){
     return (
       <div className="App">
         <div className="user-info">
           <h1>Welcome {this.state.userdata.name}</h1>
-
-          {
-            (this.state.editaccount) 
+          {(this.state.editaccount) 
             ? (
                 <form onSubmit={(e) => {this.submitUserData(e)}}>
                   <label htmlFor="name">Name</label>
@@ -130,15 +156,26 @@ class Dashboard extends Component {
               </>
             )
           }
-          
+        <div className="my-locations">
+          <h2>My Locations</h2>
+          {(this.state.locations)
+            ? this.state.locations.map(l => (
+                <div className="user-address" key={l.id}>
+                  <address>
+                    <h3>{l.address}</h3>
+                    <p>{l.city} {l.state}, {l.zip_code}</p>
+                  </address>
+                  <p>{l.description}</p>
+                  <button onClick={() => this.deleteLocation(l.id)}>Delete</button>
+                </div>
+            ))
+            : (<p>You don't have any locations yet</p>)}
+        </div>
         </div>
         <div className="location">
           <button id="add-location" onClick={() => this.showAddLocation()}>Add Location</button>
           <form className={(this.state.addlocation) ? '' : 'hidden'} onSubmit={(e) => {this.handleFormSubmit(e)}}>
             <h2>Add Location</h2>
-
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name"></input>
 
             <label htmlFor="address">Address</label>
             <input type="text" name="address"></input>

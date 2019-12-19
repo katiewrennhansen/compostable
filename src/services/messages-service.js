@@ -71,6 +71,19 @@ const MessagesService = {
                 : res.json()
         )
     },
+    deleteMessage(id){
+        return fetch(`${config.API_ENDPOINT}/messages/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res
+        )
+    },
 }
 
 

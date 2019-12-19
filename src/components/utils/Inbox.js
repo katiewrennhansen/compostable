@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import MessagesService from '../../services/messages-service'
+import UsersApiService from '../../services/users-api-service'
 
 class Inbox extends Component {
   constructor(props){
@@ -26,7 +27,7 @@ class Inbox extends Component {
       })
   }
 
-  setRead(id){
+  setRead = (id) => {
     const updated = {
       read: true
     }
@@ -42,6 +43,23 @@ class Inbox extends Component {
       })
   }
 
+  // displayUserName = (id) => {
+  //   UsersApiService.getUserById(id)
+  //     .then(data => {
+  //       console.log(data.name)
+  //       const name = data.name
+  //       // const td = document.getElementById(`user-name-${id}`)
+  //       // console.log(td)
+  //       // td.innerText = `${name}`;
+  //       // const name = data.name
+  //       return name
+  //     })
+  //     .catch(error => {
+  //       console.log(error)
+  //     })
+  // }
+
+
   render(){
     return (
       <div className="inbox">
@@ -49,6 +67,7 @@ class Inbox extends Component {
           <thead>
             <tr className="heading">
               <th>Unread</th>
+              <th></th>
               <th></th>
               <th></th>
               <th></th>
@@ -62,6 +81,7 @@ class Inbox extends Component {
                       <td>
                         <input type="checkbox" />
                       </td>
+                      <td>{m.name}</td>
                       <td><Link to={`/messages/${m.id}`} onClick={() => this.setRead(m.id)}>{m.subject}</Link></td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>
@@ -78,6 +98,7 @@ class Inbox extends Component {
               <th></th>
               <th></th>
               <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -88,6 +109,7 @@ class Inbox extends Component {
                       <td>
                         <input type="checkbox" />
                       </td>
+                      <td>{m.name}</td>
                       <td><Link to={`/messages/${m.id}`}>{m.subject}</Link></td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>

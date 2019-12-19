@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactMapGL, { Marker } from 'react-map-gl'
-import data from '../data'
 import RoomIcon from '@material-ui/icons/Room';
 import CloseIcon from '@material-ui/icons/Close';
 import TokenService from '../services/token-service'
@@ -85,16 +84,15 @@ export default function Map(props) {
                                 onClick={() => {
                                     setSelected(null)
                                 }}/>
-                            <h2>{selected.description}</h2>
-                            {
-                                TokenService.getToken() 
+                            {TokenService.getToken() 
                                     ? (
                                         <div>
+                                            <h3>{selected.name}</h3>
                                             <p>{selected.description}</p>
                                             <button onClick={function(){
                                                 const form = document.getElementById('message-form')
                                                 form.classList.toggle('hidden')
-                                            }}>Message</button>
+                                            }}>Send Message</button>
                                             <form id="message-form" className="hidden" onSubmit={(e) => {
                                                 e.preventDefault()
                                                 const newMessage = {
@@ -102,7 +100,7 @@ export default function Map(props) {
                                                     subject: e.target.title.value,
                                                     body: e.target.message.value,
                                                     read: false,
-                                                    reciever_id: 5
+                                                    reciever_id: selected.user_id
                                                 }
                                                 MessagesService.postMessage(newMessage)
                                                 e.target.title.value = ""
@@ -110,7 +108,7 @@ export default function Map(props) {
                                                 const form = document.getElementById('message-form')
                                                 form.classList.toggle('hidden')
                                             }}>
-                                                <h3>Send {selected.name} a Message</h3>
+                                                <h3>Message {selected.name}</h3>
                                                 <input type="text" name="title" placeholder="Subject"/>
                                                 <textarea name="message" placeholder="Message Body Here"/>
                                                 <input type="hidden" name="id" value={selected.id} />
