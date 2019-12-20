@@ -4,6 +4,8 @@ Crowdsourced application to help connect urban people hoping to compost with loc
 
 Visit Site: https://compostable.now.sh/
 
+Back-End Code: https://github.com/katiewrennhansen/compostable-api
+
 Technologies Used: 
 * React
 * HTML
