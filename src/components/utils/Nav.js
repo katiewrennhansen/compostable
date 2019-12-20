@@ -1,44 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
-import MessagesService from '../../services/messages-service'
 
 class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
-            // unreads: false
             error: null
         }
     }
 
-    // setUnreads = () => {
-    //     this.setState({
-    //         unreads: true
-    //     })
-    // }
-
-    // clearUnreads = () => {
-    //     this.setState({
-    //         unreads: false
-    //     })
-    // }
-
-    // componentDidMount(){
-    //     if(TokenService.getToken()){
-    //         MessagesService.getNewMessages()
-    //         .then(data => {
-    //             data.map(m => {
-    //                 if(m.read === false){
-    //                     this.props.setUnreads()
-    //                 }
-    //             })
-    //         })
-    //         .catch(error => {
-    //             console.log(error)
-    //         })
-    //     }
-    // }
 
     logout = () => {
         this.props.clearUnreads()
@@ -51,7 +22,7 @@ class Dashboard extends Component {
             <>
                 <Link to='/map'>Map</Link>
                 <Link to='/dashboard'>Account</Link>
-                <Link to='/messages'>Messages{(this.props.unreads) ? '*' : null }</Link>
+                <Link className="messages-link" to='/messages'>Messages{(this.props.unreads) ? <span>&#9679;</span> : null }</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
         )
