@@ -11,8 +11,10 @@ import PrivateRoute from './components/utils/PrivateRoute'
 import PublicRoute from './components/utils/PublicRoute'
 import Map from './components/Map'
 import Messages from './components/Messages'
-import Message from './components/utils/Message'
 import NotFound from './components/NotFound'
+import Footer from './components/utils/Footer'
+import TokenService from './services/token-service'
+import MessagesService from './services/messages-service'
 import './App.css';
 
 
@@ -22,14 +24,44 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user_id: ''
+      user_id: '',
+      unreads: false
     }
+}
+
+  setUnreads = () => {
+      this.setState({
+          unreads: true
+      })
+  }
+
+  clearUnreads = () => {
+      this.setState({
+          unreads: false
+      })
   }
 
   setId = (user_id) => {
     this.setState({
       user_id
     })
+  }
+
+
+  componentDidMount(){
+    if(TokenService.getToken()){
+        MessagesService.getNewMessages()
+        .then(data => {
+            data.map(m => {
+                if(m.read === false){
+                    this.setUnreads()
+                }
+            })
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
   }
 
   render(){
@@ -39,7 +71,11 @@ class App extends Component {
     return (
       <Context.Provider value={contextValue}>
       <div className="App">
-        <Nav />
+        <Nav 
+          setUnreads={this.setUnreads}
+          clearUnreads={this.clearUnreads}
+          unreads={this.state.unreads}
+        />
         <div className="content">
         <Switch>
             <Route
@@ -48,7 +84,12 @@ class App extends Component {
             />
             <PublicRoute
               path='/login'
-              component={Login}
+              component={() => 
+                <Login 
+                  setUnreads={this.setUnreads} 
+                  history={this.props.history} 
+                />
+              }
             />
             <Route
               path='/register'
@@ -64,13 +105,19 @@ class App extends Component {
             />
             <PrivateRoute
               path='/messages'
-              component={Messages}
+              component={() => 
+                <Messages
+                  clearUnreads={this.clearUnreads}
+                  history={this.props.history} 
+                />
+              }
             />
             <Route
               component={NotFound}
             />
         </Switch>
         </div>
+        <Footer />
       </div>
       </Context.Provider>
     );

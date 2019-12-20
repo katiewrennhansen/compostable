@@ -20,12 +20,15 @@ class Sent extends Component {
   componentDidMount(){
     MessagesService.getSentMessages()
       .then(data => {
-        console.log(data)
         this.setMessages(data)
       })
       .catch(error => {
         console.log(error)
       })
+  }
+
+  pushHist(id){
+    this.props.history.push(`/messages/${id}`)
   }
 
   render(){
@@ -44,11 +47,11 @@ class Sent extends Component {
           <tbody>
             {this.state.messages.map(m => {
                   return (
-                    <tr key={m.id}>
+                    <tr key={m.id} onClick={() => this.pushHist(m.id)}>
                       <td>
                         <input type="checkbox" />
                       </td>
-                      <td><Link to={`/messages/${m.id}`}>To: {m.name}</Link></td>
+                      <td>To: {m.name}</td>
                       <td>{m.subject}</td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>

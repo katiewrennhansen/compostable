@@ -15,7 +15,7 @@ export default function Map(props) {
         longitude: -78.7811964,
         zoom: 10,
         width: '100vw',
-        height: '70vh'
+        height: '100vh'
     });
 
     const [selected, setSelected] = useState(null)
@@ -54,6 +54,8 @@ export default function Map(props) {
                     })
             }}
           >
+            <h1>Find a Compost Near You</h1>
+
               {
               locations.map(item => (
                         <Marker 
@@ -84,19 +86,18 @@ export default function Map(props) {
                                 onClick={() => {
                                     setSelected(null)
                                 }}/>
+                            <h3>{selected.name}</h3>
                             {TokenService.getToken() 
                                     ? (
                                         <div>
-                                            <h3>{selected.name}</h3>
                                             <p>{selected.description}</p>
-                                            <button onClick={function(){
+                                            <button id="button" onClick={function(){
                                                 const form = document.getElementById('message-form')
                                                 form.classList.toggle('hidden')
                                             }}>Send Message</button>
-                                            <form id="message-form" className="hidden" onSubmit={(e) => {
+                                            <form id="message-form" className="hidden message-form" onSubmit={(e) => {
                                                 e.preventDefault()
                                                 const newMessage = {
-                                                    id: 200,
                                                     subject: e.target.title.value,
                                                     body: e.target.message.value,
                                                     read: false,
@@ -112,7 +113,7 @@ export default function Map(props) {
                                                 <input type="text" name="title" placeholder="Subject"/>
                                                 <textarea name="message" placeholder="Message Body Here"/>
                                                 <input type="hidden" name="id" value={selected.id} />
-                                                <input type="submit" />
+                                                <input type="submit" value="Send" />
                                             </form>
                                         </div>
                                     )
@@ -123,7 +124,6 @@ export default function Map(props) {
                     : null}
           </ReactMapGL>
         </div>
-        <h1>Map</h1>
       </div>
     );
   

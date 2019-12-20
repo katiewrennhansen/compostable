@@ -1,16 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500|Shadows+Into+Light&display=swap');
+
 * {
     box-sizing: border-box;
+}
+
+.logo,
+h1,
+.login h2,
+.location h2 {
+    font-family: 'Shadows Into Light', display;
+}
+
+body,
+input[type="submit"] {
+    font-family: Roboto, sans-serif;
 }
 
 nav {
     display: grid;
     grid-template-columns: 2fr 1fr;
     height: 60px;
-    background: gray;
-}
-
-h1 {
-    padding-top: 100px;
+    background: rgb(1, 72, 1);
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    z-index: 10;
 }
 
 nav a {
@@ -18,9 +32,15 @@ nav a {
     text-decoration: none;
 }
 
+nav a:hover {
+    color: lightgreen;
+    transition: 200ms linear;
+}
+
 .logo {
     align-self: center;
     margin-left: 50px;
+    font-size: 35px;
 }
 
 .nav-links {
@@ -32,29 +52,22 @@ nav a {
     width: 100%;
 }
 
-form {
-    background: white;
-    box-shadow: 1px 1px 3px gray;
-    border-radius: 5px;
-    padding: 20px;
-    width: 40%;
-    margin: 100px auto;
-    text-align: left;
-}
-
 input,
 textarea {
     display: block;
-    padding: 10px 0;
-    border-radius: 5px;
-    border: 1px solid rgb(176, 176, 176);
+    padding: 15px;
+    border-radius: 3px;
+    border: 1px solid rgba(26, 26, 26, 0.214);
     width: 100%;
     margin: 5px 0 10px;
     font-size: 16px;
+    background: rgba(0, 0, 0, 0.358);
 }
 
 input[type="submit"]{
     width: 100%;
+    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.214);
+    margin-top: 20px;
 }
 
 input[type="submit"]:hover {
@@ -66,9 +79,85 @@ input[type="submit"]:hover {
     text-align: center;
 }
 
-
 .landing {
     padding-top: 20vh;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/compostable_cover.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+/* LOGIN FORM STYLES */
+.login {
+    background: rgb(0, 24, 0);
+}
+
+.login-image {
+    background-image: url('./images/compostable_cover.jpg');
+    filter: blur(10px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh; 
+}
+
+.login form {
+    width: 30%;
+}
+
+.login-form {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background:none;
+    box-shadow: none;
+    color: white;
+}
+
+.login-form input[type="text"]{
+    color: white;
+    transition: 200ms linear;
+}
+
+.login-form input[type="submit"]{
+    background: lightgreen;
+    transition: 200ms linear;
+}
+
+.login-form input[type="submit"]:hover {
+    transition: 200ms linear;
+    background: rgba(144, 238, 144, 0.803);
+}
+
+.login-form a {
+    color: white;
+}
+
+.landing h1 {
+    color: white;
+    font-size: 50px;
+}
+
+.landing a {
+    color: rgb(0, 43, 0);
+    text-decoration: none;
+    padding: 20px;
+    background: lightgreen;
+}
+
+.landing a:hover {
+    transition: 200ms linear;
+    background: rgba(144, 238, 144, 0.8);
+}
+
+
+/* MAP STYLES */
+.map-container {
+    padding-top: 60px;
+    position: relative;
 }
 
 .map {
@@ -76,8 +165,14 @@ input[type="submit"]:hover {
     margin: 0 auto;
 }
 
+#map h1 {
+    text-align: center;
+    width: 100%;
+    position: absolute;
+}
+
 .icon {
-    color: rgb(10, 194, 40);
+    color: rgb(1, 72, 1)
 }
 
 .click-btn {
@@ -91,7 +186,33 @@ input[type="submit"]:hover {
     background: rgb(222, 249, 207);
     box-shadow: 1px 1px 3px lightgray;
     position: relative;
-    padding: 30px;
+    top: 0;
+    padding: 100px 15px;
+}
+
+.popup:hover {
+    cursor: default;
+}
+
+.popup button,
+.user-info button,
+.location button {
+    background: rgb(1, 72, 1);
+    color: white;
+    border: 1px solid rgb(1, 72, 1);
+    border-radius: 2px;
+    padding: 10px;
+    font-size: 15px;
+    box-shadow: 1px 1px 2px rgb(91, 91, 91);
+    transition: 200ms linear;
+}
+
+.popup button:hover,
+.user-info button:hover,
+.location button:hover {
+    cursor:pointer;
+    background: rgb(1, 53, 1);
+    transition: 200ms linear;
 }
 
 .close-icon {
@@ -100,21 +221,98 @@ input[type="submit"]:hover {
     right: 30px;
 }
 
+.message-form {
+    width: 95%;
+    margin: 50px auto;
+}
+
+.message-form input,
+.message-form textarea {
+    background: rgb(243, 254, 237);
+}
+
+
+/* DASHBOARD */
+.messages,
+.dashboard {
+    padding: 120px 0 60px;
+}
+
+.user-info,
+.location {
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.location-form form,
+.user-info form {
+    margin: 40px auto;
+    width: 100%;
+}
+
+.user-address {
+    border: 1px solid rgb(191, 191, 191);
+    border-radius: 3px;
+    margin: 20px 0;
+    padding: 20px;
+    width: 40%;
+    position: relative;
+}
+
+.user-info input {
+    background: rgb(220, 220, 220);
+}
+
+.user-info input[type="submit"] {
+    background: rgb(220, 220, 220);
+}
+
+
+.location {
+    padding-top: 80px;
+}
+
+.locations-close-icon {
+    position: absolute;
+    right: 20px;
+}
+
+.locations-close-icon:hover,
+.add-icon:hover {
+    cursor: pointer;
+}
+
+.header-grid {
+    display: grid;
+    grid-template-columns: 250px auto;
+}
+
+.add-icon {
+    align-self: center;
+}
+
+
+/* MESSAGES */
 table {
-    border: 1px solid gray;
+    border: 1px solid rgb(194, 194, 194);
     width: 70%;
     margin: 50px auto;
     border-collapse: collapse;
 }
 
-.heading th {
-    padding-bottom: 20px;
+tr:hover {
+    cursor: pointer;
+}
+
+th {
+    background: rgb(207, 207, 207);
 }
 
 th, 
 td {
     text-align: left;
-    padding: 5px;
+    padding: 8px;
 }
 
 .unread td {
@@ -123,11 +321,6 @@ td {
 
 td {
     border-top: 1px solid lightgray;
-}
-
-#message-form {
-    width: 85%;
-    margin: 40px auto;
 }
 
 .hidden {
@@ -167,22 +360,32 @@ form.reply {
     width: 60%;
 }
 
-.user-info,
-.location {
-    text-align: left;
-    width: 60%;
-    margin: 0 auto;
+
+
+
+/* FOOTER */
+footer {
+    background: rgb(0, 31, 0);
+    padding: 60px;
+    text-align: center;
+    color: lightgreen;
 }
 
-.location form,
-.user-info form {
-    margin: 40px auto;
-    width: 100%;
+footer a {
+    color: lightgreen;
+    text-decoration: none;
 }
 
-.user-address {
-    border: 1px solid gray;
-    margin: 20px 0;
-    padding: 20px;
-    width: 40%;
+
+@media (min-width: 1200px){
+    .landing h1 {
+        padding-top: 5vh;
+        font-size: 100px;
+    }
+    .login h2,
+    .map-container h1,
+    .messages h1  {
+        font-size: 50px;
+    }
+    
 }

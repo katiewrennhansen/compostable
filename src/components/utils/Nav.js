@@ -7,48 +7,51 @@ class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
-            unreads: false
+            // unreads: false
+            error: null
         }
     }
 
-    setUnreads = () => {
-        this.setState({
-            unreads: true
-        })
-    }
+    // setUnreads = () => {
+    //     this.setState({
+    //         unreads: true
+    //     })
+    // }
 
-    clearUnreads = () => {
-        this.setState({
-            unreads: false
-        })
-    }
+    // clearUnreads = () => {
+    //     this.setState({
+    //         unreads: false
+    //     })
+    // }
 
-    componentDidMount(){
-        MessagesService.getNewMessages()
-            .then(data => {
-                data.map(m => {
-                    if(m.read === false){
-                        this.setUnreads()
-                    }
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+    // componentDidMount(){
+    //     if(TokenService.getToken()){
+    //         MessagesService.getNewMessages()
+    //         .then(data => {
+    //             data.map(m => {
+    //                 if(m.read === false){
+    //                     this.props.setUnreads()
+    //                 }
+    //             })
+    //         })
+    //         .catch(error => {
+    //             console.log(error)
+    //         })
+    //     }
+    // }
 
     logout = () => {
-        this.clearUnreads()
+        this.props.clearUnreads()
         TokenService.clearToken()
         sessionStorage.clear()
     }
 
-    loggedIn(unreads){
+    loggedIn(){
         return (
             <>
                 <Link to='/map'>Map</Link>
                 <Link to='/dashboard'>Account</Link>
-                <Link to='/messages'>Messages{(this.state.unreads) ? '*' : null }</Link>
+                <Link to='/messages'>Messages{(this.props.unreads) ? '*' : null }</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
         )
@@ -58,7 +61,7 @@ class Dashboard extends Component {
     loggedOut(){
         return (
             <>
-                <div></div>
+                <Link to='/'>Home</Link>
                 <Link to='/map'>Map</Link>
                 <Link to='/register'>Register</Link>
                 <Link to='/login'>Login</Link>

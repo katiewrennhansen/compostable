@@ -18,7 +18,12 @@ class Messages extends Component {
           <Switch>
             <PrivateRoute 
               exact path='/messages'
-              component={Inbox}
+              component={() => 
+                <Inbox
+                  clearUnreads={this.props.clearUnreads}
+                  history={this.props.history} 
+                />
+              }
             />
             <PrivateRoute 
               exact path='/messages/sent'
