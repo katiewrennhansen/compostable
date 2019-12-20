@@ -194,12 +194,14 @@ class Locations extends Component {
                 )}
             <div className="location-form">
               {(this.state.addlocation) 
-                ? (
+                ? (<>
                   <LocationForm 
                     type="Add"
                     location={[]}
                     handleSubmit={this.addLocation}
                   />
+                  <button onClick={() => this.showAddLocation()}>Cancel</button>
+                  </>
                 )
                 : null
               }

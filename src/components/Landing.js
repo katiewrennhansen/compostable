@@ -22,9 +22,9 @@ class Landing extends Component {
           </div>
           <div className="line1"></div>
 
-          <div className="bring-food instructions">
+          <div className="bring-food instructions reverse">
+            <FontAwesomeIcon className="landing-icon icon-reverse" icon={faCarrot} />
             <p>Bring your food scraps to a local compost, or recieve scraps from your neighbors.</p>
-            <FontAwesomeIcon className="landing-icon" icon={faCarrot} />
           </div>
           
           <div className="line2"></div>
