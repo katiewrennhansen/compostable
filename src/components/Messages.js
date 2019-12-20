@@ -15,6 +15,7 @@ class Messages extends Component {
           <Link to="/messages">Inbox</Link>
           <Link to="/messages/sent">Sent</Link>
         </aside>
+        <div>
           <Switch>
             <PrivateRoute 
               exact path='/messages'
@@ -34,6 +35,7 @@ class Messages extends Component {
               component={Message}
             />
           </Switch>
+        </div>
       </div>
     );
   }

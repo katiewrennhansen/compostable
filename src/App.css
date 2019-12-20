@@ -10,9 +10,7 @@ body {
 
 .logo,
 h1,
-.login h2,
-.register h2,
-.location h2 {
+h2 {
     font-family: 'Shadows Into Light', display;
 }
 
@@ -51,6 +49,16 @@ nav a:hover {
     align-self: center;
     margin-left: 50px;
     font-size: 35px;
+}
+
+.logo a:hover {
+    color: white;
+}
+
+.logo-icon {
+    color: rgb(158, 236, 158);
+    margin-left: 10px;
+    font-size: 25px;
 }
 
 .nav-links {
@@ -114,6 +122,50 @@ input[type="submit"]:hover {
 .landing a:hover {
     transition: 200ms linear;
     background: rgba(144, 238, 144, 0.8);
+}
+
+.landing-content {
+    padding: 60px 100px;
+}
+
+.instructions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 0;
+}
+
+.line1,
+.line2 {
+    height: 2px;
+    width: 250px;
+    background: rgba(0, 43, 0, 0.185);
+    border-radius: 2px;
+    position: absolute;
+}
+
+.line1 {
+    left: 42%;
+    transform: translate(-42%, -50%);
+    transform: rotate(140deg);
+}
+
+.line2 {
+    left: 42%;
+    transform: translate(-42%, -50%);
+    transform: rotate(40deg);
+}
+
+.instructions p {
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+}
+
+.landing-icon {
+    font-size: 100px;
+    color: rgb(0, 43, 0);
+    align-self: center;
+    justify-self: center;
 }
 
 /* LOGIN FORM STYLES */
@@ -230,6 +282,10 @@ input[type="submit"]:hover {
 .location button,
 .single-message button,
 form.reply input[type="submit"],
+.message-form input[type="submit"],
+.location-form input[type="submit"] ,
+.user-info input[type="submit"],
+.edit-location input[type="submit"],
 .start {
     background: rgb(1, 72, 1);
     color: white;
@@ -246,11 +302,25 @@ form.reply input[type="submit"],
 .location button:hover,
 .single-message button:hover,
 form.reply input[type="submit"]:hover,
+.message-form input[type="submit"]:hover,
+.location-form input[type="submit"]:hover,
+.user-info input[type="submit"]:hover,
+.edit-location input[type="submit"]:hover,
 .start {
     cursor:pointer;
     background: rgb(1, 53, 1);
     transition: 200ms linear;
 }
+
+form.reply input[type="submit"],
+.message-form input[type="submit"],
+.location-form input[type="submit"] ,
+.user-info input[type="submit"],
+.edit-location input[type="submit"] {
+    height: 50px;
+    font-size: 16px;
+}
+
 
 .start {
     text-decoration: none;
@@ -308,11 +378,6 @@ form.reply input[type="submit"]:hover,
 .user-info input {
     background: rgb(220, 220, 220);
 }
-
-.user-info input[type="submit"] {
-    background: rgb(220, 220, 220);
-}
-
 
 .location {
     padding-top: 80px;
@@ -438,11 +503,6 @@ form.reply textarea {
     background: rgb(245, 245, 245);
 }
 
-form.reply input[type="submit"] {
-    height: 50px;
-    font-size: 16px;
-}
-
 .delete-icon {
     color: rgb(0, 31, 0);
 }
@@ -460,8 +520,12 @@ footer {
 }
 
 footer a {
-    color: lightgreen;
+    color: rgba(144, 238, 144, 0.475);
     text-decoration: none;
+}
+
+footer a:hover {
+    cursor: pointer;
 }
 
 
@@ -473,7 +537,9 @@ footer a {
     .login h2,
     .register h2,
     .map-container h1,
-    .messages h1  {
+    .messages h1,
+    .content h2
+  {
         font-size: 50px;
     }
     

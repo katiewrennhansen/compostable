@@ -177,7 +177,7 @@ class Locations extends Component {
                     )
                   } else {
                     return (
-                      <div key={l.id}>
+                      <div className="edit-location" key={l.id}>
                         <LocationForm 
                           type="Edit"
                           location={l}

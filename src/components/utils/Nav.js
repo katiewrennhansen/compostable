@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSeedling } from '@fortawesome/free-solid-svg-icons' 
 
 class Dashboard extends Component {
     constructor(props){
@@ -43,7 +45,10 @@ class Dashboard extends Component {
     render(){
         return (
             <nav>
-                <Link className="logo" to='/'>Compostable</Link>
+                <div className="logo">
+                    <Link to='/'>Compostable</Link>
+                    <FontAwesomeIcon className="logo-icon" icon={faSeedling} />
+                </div>
                 <div className="nav-links">
                     {TokenService.getToken() ? this.loggedIn() : this.loggedOut()}
                 </div>

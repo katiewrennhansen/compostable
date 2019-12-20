@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import MessagesService from '../../services/messages-service'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class Inbox extends Component {
   constructor(props){
@@ -47,6 +47,13 @@ class Inbox extends Component {
     this.props.history.push(`/messages/${id}`)
   }
 
+  deleteMessage = (id) => {
+    MessagesService.deleteMessage(id)
+      .then(data => {
+        this.props.history.push('/messages')
+      })
+  }
+
   render(){
     return (
       <div className="inbox">
@@ -65,13 +72,13 @@ class Inbox extends Component {
                 if(m.read === false){
                   return (
                     <tr key={m.id} onClick={() => {this.pushHist(m.id); this.setRead(m.id)}} className="message unread">
-                      <td>
-                        <input type="checkbox" />
-                      </td>
                       <td>{m.name}</td>
                       <td>{m.subject}</td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>
+                      <td>
+                        <DeleteIcon onClick={() => this.deleteMessage(m.id)}/>
+                      </td>
                     </tr>
                   )
                 }
@@ -93,13 +100,13 @@ class Inbox extends Component {
                 if(m.read === true){
                   return (
                     <tr key={m.id} onClick={() => this.pushHist(m.id)} className="message read">
-                      <td>
-                        <input type="checkbox" />
-                      </td>
                       <td>{m.name}</td>
                       <td>{m.subject}</td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>
+                      <td>
+                        <DeleteIcon onClick={() => this.deleteMessage(m.id)} />
+                      </td>
                     </tr>
                   )
                 }

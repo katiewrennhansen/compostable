@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import MessagesService from '../../services/messages-service'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class Sent extends Component {
 
@@ -31,6 +31,13 @@ class Sent extends Component {
     this.props.history.push(`/messages/${id}`)
   }
 
+  deleteMessage = (id) => {
+    MessagesService.deleteMessage(id)
+      .then(data => {
+        this.props.history.push('/messages')
+      })
+  }
+
   render(){
     return (
       <div className="inbox">
@@ -48,13 +55,13 @@ class Sent extends Component {
             {this.state.messages.map(m => {
                   return (
                     <tr key={m.id} onClick={() => this.pushHist(m.id)}>
-                      <td>
-                        <input type="checkbox" />
-                      </td>
                       <td>To: {m.name}</td>
                       <td>{m.subject}</td>
                       <td>{m.body}</td>
                       <td>{m.date_created.slice(0, 10)}</td>
+                      <td>
+                        <DeleteIcon onClick={() => this.deleteMessage(m.id)}/>
+                      </td>
                     </tr>
                   )
               })}
