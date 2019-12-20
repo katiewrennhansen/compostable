@@ -64,7 +64,7 @@ class Inbox extends Component {
               {this.state.messages.map(m => {
                 if(m.read === false){
                   return (
-                    <tr key={m.id} onClick={() => this.pushHist(m.id)} className="message unread">
+                    <tr key={m.id} onClick={() => {this.pushHist(m.id); this.setRead(m.id)}} className="message unread">
                       <td>
                         <input type="checkbox" />
                       </td>

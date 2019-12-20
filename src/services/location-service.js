@@ -41,6 +41,21 @@ const LocationsService = {
                 : res.json()
         )
     },
+    updateLocation(id, obj){
+        return fetch(`${config.API_ENDPOINT}/locations/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `bearer ${TokenService.getToken()}`
+            },
+            body: JSON.stringify(obj)
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res
+        )
+    },
     deleteLocation(id){
         return fetch(`${config.API_ENDPOINT}/locations/${id}`, {
             method: 'DELETE',

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import MessagesService from '../../services/messages-service'
 import DeleteIcon from '@material-ui/icons/Delete';
+import UsersApiService from '../../services/users-api-service'
 
 class Message extends Component {
     constructor(props){
         super(props)
         this.state = {
-          messages: []
+          messages: {}
         }
       }
     
