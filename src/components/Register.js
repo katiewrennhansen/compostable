@@ -23,43 +23,42 @@ class Register extends Component {
 
   render(){
     return (
-      <>
-        <form onSubmit={(e) => {this.handleRegistration(e)}}>
+      <div className="register">
+        <div className="login-image"></div>
+        <form className="register-form" onSubmit={(e) => {this.handleRegistration(e)}}>
             <h2>Register</h2>
-            <div className="form-content">
                 <label htmlFor="username">Name: </label>
                 <input 
                     type="text"
                     id="name" 
                     name="name" 
-                    placeholer="name"
+                    placeholder="Full Name"
                 />
                 <label htmlFor="email">Email: </label>
                 <input 
                     type="email"
                     id="email" 
                     name="email" 
-                    placeholer="email"
+                    placeholder="Email"
                 />
                 <label htmlFor="username">Username: </label>
                 <input 
                     type="text"
                     id="username" 
                     name="username" 
-                    placeholer="username"
+                    placeholder="Username"
                 />
                 <label htmlFor="password">Password: </label>
                 <input 
                     type="password"
                     id="password" 
                     name="password" 
-                    placeholer="password"
+                    placeholder="Password"
                 />
                 <input type="submit" value="Register"/>
                 <p>Already have an account? <Link to='/login'>Login</Link></p>
-            </div>
         </form>
-      </>
+      </div>
     );
   }
   

@@ -32,12 +32,10 @@ class AccountInfo extends Component {
       this.setState({
         editaccount: false
       })
-      document.getElementById('add-location').innerText = 'Add Location'
     } else {
       this.setState({
         editaccount: true
       })
-      document.getElementById('add-location').innerText = 'Hide Form'
     } 
   }
 

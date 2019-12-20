@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MessagesService from '../../services/messages-service'
+import DeleteIcon from '@material-ui/icons/Delete';
 
 class Message extends Component {
     constructor(props){
@@ -19,6 +20,8 @@ class Message extends Component {
         const id = this.props.match.params.id
         MessagesService.getMessageById(id)
           .then(data => {
+            const newDate = data.date_created.split('T')[0]
+            data.date_created = newDate
             this.setMessages(data)
           })
           .catch(error => {
@@ -61,16 +64,16 @@ class Message extends Component {
                     <div className="single-message">
                         <p>From: {m.name}</p>
                         <p>Subject: {m.subject}</p>
-                        <p>{m.body}</p>
-                        <p>{m.date_created}</p>
-                        <button onClick={() => this.deleteMessage(m.id)}>Delete</button>
+                        <p>Message: {m.body}</p>
+                        <p>Sent On: {m.date_created}</p>
+                        <DeleteIcon className="delete-icon" onClick={() => this.deleteMessage(m.id)} />
                     </div>
                     <form className="reply" onSubmit={(e) => this.submitMessage(e)}>
                         <label htmlFor="title">Subject</label>
                         <input type="text" name="title" defaultValue={`Re: ${m.subject}`}/>
                         <label htmlFor="message">Message</label>
                         <textarea name="message" rows="10" placeholder="Message Body Here"/>
-                        <input type="submit" />
+                        <input type="submit" value="Send"/>
                     </form>
                 </div>
             </div>

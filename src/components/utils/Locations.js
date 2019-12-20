@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import LocationsService from '../../services/location-service'
 import AddIcon from '@material-ui/icons/Add';
-import CloseIcon from '@material-ui/icons/Close';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 class Locations extends Component {
   constructor(props){
@@ -66,27 +67,11 @@ class Locations extends Component {
       this.setState({
         addlocation: false
       })
-      document.getElementById('add-location').innerText = 'Add Location'
     } else {
       this.setState({
         addlocation: true
       })
-      document.getElementById('add-location').innerText = 'Hide Form'
     }    
-  }
-
-  showEditInformation(){
-    if(this.state.editaccount){
-      this.setState({
-        editaccount: false
-      })
-      document.getElementById('add-location').innerText = 'Add Location'
-    } else {
-      this.setState({
-        editaccount: true
-      })
-      document.getElementById('add-location').innerText = 'Hide Form'
-    } 
   }
 
   deleteLocation = (id) => {
@@ -116,16 +101,19 @@ class Locations extends Component {
             {(this.state.locations.length >= 1)
                 ? this.state.locations.map(l => (
                     <div className="user-address" key={l.id}>
-                      <CloseIcon 
-                        className="locations-close-icon" 
-                        onClick={() => this.deleteLocation(l.id)}
-                      />
                       <address>
                           <h3>{l.address}</h3>
                           <p>{l.city} {l.state}, {l.zip_code}</p>
                       </address>
                       <p>{l.description}</p>
-                      <button onClick={() => this.updateLocation(l.id)}>Update</button>
+                      <EditIcon 
+                      className="locations-edit-icon"
+                        onClick={() => this.updateLocation(l.id)}
+                      />
+                      <DeleteIcon 
+                        className="locations-close-icon" 
+                        onClick={() => this.deleteLocation(l.id)}
+                      />
                     </div>
                 ))
                 : (

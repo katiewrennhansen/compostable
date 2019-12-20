@@ -4,9 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    background: rgb(240, 240, 230);
+}
+
 .logo,
 h1,
 .login h2,
+.register h2,
 .location h2 {
     font-family: 'Shadows Into Light', display;
 }
@@ -88,9 +93,33 @@ input[type="submit"]:hover {
     height: 100vh;
 }
 
+.landing h1 {
+    color: white;
+    font-size: 50px;
+}
+
+.landing a {
+    color: rgb(0, 43, 0);
+    text-decoration: none;
+    padding: 20px;
+    background: lightgreen;
+    border-radius: 2px;
+}
+
+.landing a:hover {
+    transition: 200ms linear;
+    background: rgba(144, 238, 144, 0.8);
+}
+
 /* LOGIN FORM STYLES */
-.login {
+.login,
+.register {
     background: rgb(0, 24, 0);
+}
+
+.login h2,
+.register h2 {
+    text-align: center;
 }
 
 .login-image {
@@ -102,55 +131,52 @@ input[type="submit"]:hover {
     height: 100vh; 
 }
 
-.login form {
+.login form,
+.register form {
     width: 30%;
 }
 
-.login-form {
+.login-form,
+.register-form {
     position: absolute;
-    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
     background:none;
     box-shadow: none;
     color: white;
+    text-align: left;
 }
 
-.login-form input[type="text"]{
+.login-form {
+    top: 35%;
+}
+
+.register-form {
+    top: 45%;
+}
+
+.login-form input[type="text"],
+.register-form input[type="text"]{
     color: white;
     transition: 200ms linear;
 }
 
-.login-form input[type="submit"]{
+.login-form input[type="submit"],
+.register-form input[type="submit"]{
     background: lightgreen;
     transition: 200ms linear;
 }
 
-.login-form input[type="submit"]:hover {
+.login-form input[type="submit"]:hover,
+.register-form input[type="submit"]:hover {
     transition: 200ms linear;
     background: rgba(144, 238, 144, 0.803);
 }
 
-.login-form a {
+.login-form a,
+.register-form a {
     color: white;
-}
-
-.landing h1 {
-    color: white;
-    font-size: 50px;
-}
-
-.landing a {
-    color: rgb(0, 43, 0);
-    text-decoration: none;
-    padding: 20px;
-    background: lightgreen;
-}
-
-.landing a:hover {
-    transition: 200ms linear;
-    background: rgba(144, 238, 144, 0.8);
 }
 
 
@@ -196,7 +222,9 @@ input[type="submit"]:hover {
 
 .popup button,
 .user-info button,
-.location button {
+.location button,
+.single-message button,
+form.reply input[type="submit"] {
     background: rgb(1, 72, 1);
     color: white;
     border: 1px solid rgb(1, 72, 1);
@@ -209,7 +237,9 @@ input[type="submit"]:hover {
 
 .popup button:hover,
 .user-info button:hover,
-.location button:hover {
+.location button:hover,
+.single-message button:hover,
+form.reply input[type="submit"]:hover {
     cursor:pointer;
     background: rgb(1, 53, 1);
     transition: 200ms linear;
@@ -276,9 +306,17 @@ input[type="submit"]:hover {
 .locations-close-icon {
     position: absolute;
     right: 20px;
+    bottom: 20px;
+}
+
+.locations-edit-icon {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
 }
 
 .locations-close-icon:hover,
+.locations-edit-icon:hover,
 .add-icon:hover {
     cursor: pointer;
 }
@@ -296,7 +334,7 @@ input[type="submit"]:hover {
 /* MESSAGES */
 table {
     border: 1px solid rgb(194, 194, 194);
-    width: 70%;
+    width: 80%;
     margin: 50px auto;
     border-collapse: collapse;
 }
@@ -306,7 +344,7 @@ tr:hover {
 }
 
 th {
-    background: rgb(207, 207, 207);
+    background: rgba(207, 207, 207, 0.63);
 }
 
 th, 
@@ -329,7 +367,7 @@ td {
 
 .messages {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: 1fr 5fr;
 }
 
@@ -342,26 +380,61 @@ td {
     display: grid;
     grid-template-rows: repeat(2, 50px);
     justify-items: flex-start;
-    padding: 50px 60px;
+    align-items: center;
+    padding: 80px 20px;
+    background: rgb(1, 53, 1);
+    border-radius: 3px;
+}
+
+.messages-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 3px;
+    transition: 200ms linear;
+}
+
+.messages-nav a:hover {
+    background: rgb(0, 18, 0);
+    transition: 200ms linear;
+    color: white;
 }
 
 .single-message {
     text-align: left;
-    width: 60%;
-    margin: 0 auto;
+    width: 70%;
+    margin: 50px auto;
     border: 1px solid lightgray;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 20px;
-    box-shadow: 1px 1px 3px lightgray;
+    box-shadow: 1px 1px 2px lightgray;
 }
 
 form.reply {
     margin-top: 30px;
-    width: 60%;
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
 }
 
+form.reply input,
+form.reply textarea {
+    background: rgb(245, 245, 245);
+}
 
+form.reply input[type="submit"] {
+    height: 50px;
+    font-size: 16px;
+}
 
+.delete-icon {
+    color: rgb(0, 31, 0);
+}
+
+.delete-icon:hover {
+    cursor: pointer;
+}
 
 /* FOOTER */
 footer {
@@ -383,6 +456,7 @@ footer a {
         font-size: 100px;
     }
     .login h2,
+    .register h2,
     .map-container h1,
     .messages h1  {
         font-size: 50px;
