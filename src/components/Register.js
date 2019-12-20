@@ -3,7 +3,19 @@ import { Link } from 'react-router-dom'
 import UsersApiService from '../services/users-api-service'
 
 class Register extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            error: null
+        }
+    }
 
+    setError = error => {
+        this.setState({
+          error
+        })
+    }
+    
     handleRegistration = (e) => {
         e.preventDefault()
         const newUser = {
@@ -17,7 +29,7 @@ class Register extends Component {
                 this.props.history.push('/login')
             })
             .catch(error => {
-                console.log(error)
+                this.setError(error.error)
             })
     }
 

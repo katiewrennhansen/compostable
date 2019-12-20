@@ -6,7 +6,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Nav from './components/utils/Nav'
-import Context from './contexts/Context'
 import PrivateRoute from './components/utils/PrivateRoute'
 import PublicRoute from './components/utils/PublicRoute'
 import Map from './components/Map'
@@ -19,12 +18,9 @@ import './App.css';
 
 
 class App extends Component {
-  static contextType = Context
-
   constructor(props){
     super(props)
     this.state = {
-      user_id: '',
       unreads: false
     }
 }
@@ -47,12 +43,11 @@ class App extends Component {
     })
   }
 
-
   componentDidMount(){
     if(TokenService.getToken()){
         MessagesService.getNewMessages()
         .then(data => {
-            data.map(m => {
+            data.forEach(m => {
                 if(m.read === false){
                     this.setUnreads()
                 }
@@ -65,11 +60,7 @@ class App extends Component {
   }
 
   render(){
-    const contextValue = {
-        user_id: this.state.user_id
-    }
     return (
-      <Context.Provider value={contextValue}>
       <div className="App">
         <Nav 
           setUnreads={this.setUnreads}
@@ -91,7 +82,7 @@ class App extends Component {
                 />
               }
             />
-            <Route
+            <PublicRoute
               path='/register'
               component={Register}
             />
@@ -119,10 +110,8 @@ class App extends Component {
         </div>
         <Footer />
       </div>
-      </Context.Provider>
     );
   }
-  
 }
 
 export default withRouter(App);

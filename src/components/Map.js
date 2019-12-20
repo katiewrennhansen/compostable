@@ -10,7 +10,7 @@ export default function Map(props) {
         longitude: -78.7811964,
         zoom: 10,
         width: '100vw',
-        height: '100vh'
+        height: '100vh',
     });
 
     const [selected, setSelected] = useState(null)

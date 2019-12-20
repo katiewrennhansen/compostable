@@ -1,7 +1,6 @@
 import React from 'react'
 
-
-export default function LocationsForm(props){
+export default function LocationForm(props){
     return (
         <form onSubmit={(e) => props.handleSubmit(e)}>
             <h2>{props.type} Location</h2>

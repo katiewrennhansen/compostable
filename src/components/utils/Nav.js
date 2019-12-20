@@ -4,14 +4,13 @@ import TokenService from '../../services/token-service'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons' 
 
-class Dashboard extends Component {
+class Nav extends Component {
     constructor(props){
         super(props)
         this.state = {
             error: null
         }
     }
-
 
     logout = () => {
         this.props.clearUnreads()
@@ -27,8 +26,7 @@ class Dashboard extends Component {
                 <Link className="messages-link" to='/messages'>Messages{(this.props.unreads) ? <span>&#9679;</span> : null }</Link>
                 <Link onClick={this.logout} to='/'>Logout</Link>
             </>
-        )
-        
+        ) 
     }
 
     loggedOut(){
@@ -58,4 +56,4 @@ class Dashboard extends Component {
   
 }
 
-export default Dashboard;
+export default Nav;

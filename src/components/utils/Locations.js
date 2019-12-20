@@ -187,11 +187,8 @@ class Locations extends Component {
                       </div>
                     )
                   }})
-                : (
-                    <div>
-                        <p>You don't have any locations yet</p>
-                    </div>
-                )}
+                : ( <p>You don't have any locations yet. Click the plus icon to add a compost!</p> )
+              }
             <div className="location-form">
               {(this.state.addlocation) 
                 ? (<>
@@ -206,11 +203,9 @@ class Locations extends Component {
                 : null
               }
             </div>
-        </div>
-        
+        </div> 
     );
   }
-  
 }
 
 export default Locations;

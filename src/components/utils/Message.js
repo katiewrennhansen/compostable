@@ -70,9 +70,17 @@ class Message extends Component {
                     </div>
                     <form className="reply" onSubmit={(e) => this.submitMessage(e)}>
                         <label htmlFor="title">Subject</label>
-                        <input type="text" name="title" defaultValue={`Re: ${m.subject}`}/>
+                        <input 
+                          type="text" 
+                          name="title" 
+                          defaultValue={`Re: ${m.subject}`}
+                        />
                         <label htmlFor="message">Message</label>
-                        <textarea name="message" rows="10" placeholder="Message Body Here"/>
+                        <textarea 
+                          name="message" 
+                          rows="10" 
+                          placeholder="Message Body Here"
+                        />
                         <input type="submit" value="Send"/>
                     </form>
                 </div>

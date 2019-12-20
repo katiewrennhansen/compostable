@@ -5,6 +5,7 @@ class AccountInfo extends Component {
   constructor(props){
     super(props)
     this.state = {
+      error: null,
       userdata: '',
       editaccount: false
     }
@@ -16,6 +17,11 @@ class AccountInfo extends Component {
     })
   }
 
+  setError = error => {
+    this.setState({
+      error
+    })
+  }
 
   componentDidMount(){
     UserApiService.getUser()
@@ -23,7 +29,7 @@ class AccountInfo extends Component {
         this.setUserData(data)
       })
       .catch(error => {
-        console.log(error)
+        this.setError(error.error)
       })
   }
 

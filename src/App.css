@@ -8,6 +8,21 @@ body {
     background: rgb(240, 240, 230);
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover,
+button:hover,
+input[type="submit"],
+.locations-close-icon:hover,
+.locations-edit-icon:hover,
+.add-icon:hover,
+tr:hover,
+.delete-icon:hover {
+    cursor: pointer;
+}
+
 .logo,
 h1,
 h2 {
@@ -33,7 +48,6 @@ nav {
 
 nav a {
     color: white;
-    text-decoration: none;
 }
 
 nav a:hover {
@@ -52,7 +66,7 @@ nav a:hover {
 }
 
 .logo a {
-    display:none;
+    display: none;
 }
 
 .logo-icon {
@@ -83,22 +97,12 @@ textarea {
     background: rgba(0, 0, 0, 0.358);
 }
 
-input[type="submit"]{
-    width: 100%;
-    box-shadow: 1px 1px 3px rgba(26, 26, 26, 0.214);
-    margin-top: 20px;
-}
-
-input[type="submit"]:hover {
-    cursor: pointer;
-    box-shadow: 1px 1px 3px gray;
-}
-
 .content {
     text-align: center;
 }
 
-.landing {
+.landing,
+.not-found {
     padding-top: 20vh;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('./images/compostable_cover.jpg');
     background-position: center;
@@ -107,17 +111,19 @@ input[type="submit"]:hover {
     height: 100vh;
 }
 
-.landing h1 {
+.landing h1,
+.not-found h1 {
     color: white;
     font-size: 50px;
+    margin-bottom: 100px;
 }
 
 .landing a {
     color: rgb(0, 43, 0);
     padding: 15px;
-    text-decoration: none;
     background: lightgreen;
     border-radius: 2px;
+    transition: 200ms linear;
 }
 
 .landing a:hover {
@@ -210,6 +216,7 @@ input[type="submit"]:hover {
 .login-form a,
 .register-form a {
     color: white;
+    text-decoration: underline;
 }
 
 
@@ -281,7 +288,6 @@ form.reply input[type="submit"]:hover,
 .user-info input[type="submit"]:hover,
 .edit-location input[type="submit"]:hover,
 .start {
-    cursor:pointer;
     background: rgb(1, 53, 1);
     transition: 200ms linear;
 }
@@ -293,11 +299,6 @@ form.reply input[type="submit"],
 .edit-location input[type="submit"] {
     height: 50px;
     font-size: 16px;
-}
-
-
-.start {
-    text-decoration: none;
 }
 
 .start-container {
@@ -348,12 +349,13 @@ form.reply textarea,
 }
 
 .user-address {
-    border: 1px solid rgb(191, 191, 191);
+    border: 1px solid rgba(192, 191, 183, 0.452);
     border-radius: 3px;
     margin: 20px 0;
     padding: 20px;
     width: 100%;
     position: relative;
+    box-shadow: 1px 1px 3px rgba(192, 191, 183, 0.863);
 }
 
 .location {
@@ -370,12 +372,6 @@ form.reply textarea,
     position: absolute;
     right: 50px;
     bottom: 20px;
-}
-
-.locations-close-icon:hover,
-.locations-edit-icon:hover,
-.add-icon:hover {
-    cursor: pointer;
 }
 
 .header-grid {
@@ -395,10 +391,6 @@ table {
     margin: 50px auto;
     border-collapse: collapse;
     font-size: 14px;
-}
-
-tr:hover {
-    cursor: pointer;
 }
 
 th {
@@ -426,7 +418,6 @@ td {
 
 .messages-nav a {
     color: rgb(0, 18, 0);
-    text-decoration: none;
     padding: 8px 10px;
     margin: 0 2px;
     width: 100%;
@@ -461,9 +452,6 @@ form.reply {
     color: rgb(0, 31, 0);
 }
 
-.delete-icon:hover {
-    cursor: pointer;
-}
 
 /* FOOTER */
 footer {
@@ -475,14 +463,26 @@ footer {
 
 footer a {
     color: rgba(144, 238, 144, 0.475);
-    text-decoration: none;
 }
 
 footer a:hover {
     cursor: pointer;
 }
 
+
 @media(min-width: 768px){
+    .landing h1,
+    .not-found h1 {
+        padding-top: 5vh;
+        font-size: 80px;
+    }
+    .login h2,
+    .register h2,
+    .map-container h1,
+    .messages h1,
+    .content h2 {
+        font-size: 40px;
+    }
     .logo a {
         display: inline;
         margin-left: 50px;
@@ -549,12 +549,6 @@ footer a:hover {
     .register form {
         width: 30%;
     }
-    .register-form {
-        top: 45%;
-    }
-    .login-form {
-        top: 35%;
-    }  
     .user-info,
     .location {
         width: 60%;
@@ -595,15 +589,13 @@ footer a:hover {
 }
 @media (min-width: 1200px){
     .landing h1 {
-        padding-top: 5vh;
         font-size: 100px;
     }
     .login h2,
     .register h2,
     .map-container h1,
     .messages h1,
-    .content h2
-  {
+    .content h2 {
         font-size: 50px;
     }
     

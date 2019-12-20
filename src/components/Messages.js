@@ -6,7 +6,6 @@ import Sent from './utils/Sent'
 import PrivateRoute from './utils/PrivateRoute'
 
 class Messages extends Component {
- 
   render(){
     return (
       <div className="messages">
@@ -39,7 +38,6 @@ class Messages extends Component {
       </div>
     );
   }
-  
 }
 
 export default withRouter(Messages);

@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom'
 import AuthService from '../services/auth-service'
 import TokenService from '../services/token-service'
 import MessagesService from '../services/messages-service'
-import Context from '../contexts/Context'
 
 class Login extends Component {
-    static contextType = Context 
+    constructor(props){
+        super(props)
+        this.state = {
+            error: null
+        }
+    }
+
+    setError = error => {
+        this.setState({
+          error
+        })
+      }
 
     handleLogin = (e) => {
         e.preventDefault()
@@ -22,7 +32,7 @@ class Login extends Component {
                 this.props.history.push('/dashboard')
                 MessagesService.getNewMessages()
                     .then(data => {
-                        data.map(m => {
+                        data.forEach(m => {
                             if(m.read === false){
                                 this.props.setUnreads()
                             }
@@ -30,7 +40,7 @@ class Login extends Component {
                     })
             })
             .catch(error => {
-                console.log(error)
+                this.setError(error.error)
             })
         e.target.username.value = ''
         e.target.password.value = ''
@@ -43,6 +53,7 @@ class Login extends Component {
         <div className="login-image"></div>
         <form className="login-form" onSubmit={(e) => this.handleLogin(e)}>
             <h2>Login</h2>
+            {(this.state.error) ? <p>{this.state.error}</p> : null}
             <label htmlFor="username">Username: </label>
             <input 
                 type="text"

@@ -6,6 +6,7 @@ class Inbox extends Component {
   constructor(props){
     super(props)
     this.state = {
+      error: null,
       messages: []
     }
   }
@@ -15,7 +16,6 @@ class Inbox extends Component {
       messages
     })
   }
-
 
   componentDidMount(){
     MessagesService.getNewMessages()
@@ -81,6 +81,8 @@ class Inbox extends Component {
                       </td>
                     </tr>
                   )
+                } else {
+                  return null
                 }
               })}
           </tbody>
@@ -109,6 +111,8 @@ class Inbox extends Component {
                       </td>
                     </tr>
                   )
+                } else {
+                  return null
                 }
               })}
           </tbody>
