@@ -224,7 +224,8 @@ input[type="submit"]:hover {
 .user-info button,
 .location button,
 .single-message button,
-form.reply input[type="submit"] {
+form.reply input[type="submit"],
+.start {
     background: rgb(1, 72, 1);
     color: white;
     border: 1px solid rgb(1, 72, 1);
@@ -239,10 +240,19 @@ form.reply input[type="submit"] {
 .user-info button:hover,
 .location button:hover,
 .single-message button:hover,
-form.reply input[type="submit"]:hover {
+form.reply input[type="submit"]:hover,
+.start {
     cursor:pointer;
     background: rgb(1, 53, 1);
     transition: 200ms linear;
+}
+
+.start {
+    text-decoration: none;
+}
+
+.start-container {
+    margin-top: 100px;
 }
 
 .close-icon {

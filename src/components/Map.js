@@ -117,7 +117,11 @@ export default function Map(props) {
                                             </form>
                                         </div>
                                     )
-                                    : (<Link to="/login">Login to Start Composting!</Link>)
+                                    : (
+                                        <div className="start-container">
+                                            <Link className="start" to="/login">Login to Start Composting!</Link>
+                                        </div>
+                                        )
                             }
                         </div>
                         ) 
