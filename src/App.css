@@ -196,8 +196,10 @@ textarea {
 }
 
 .login-form input[type="text"],
+.login-form input[type="password"],
 .register-form input[type="text"],
-.register-form input[type="email"]{
+.register-form input[type="email"],
+.register-form input[type="password"]{
     color: white;
     transition: 200ms linear;
 }

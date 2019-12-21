@@ -57,6 +57,19 @@ const UsersApiService = {
                 : res
         )
     },
+    deleteUser(){
+        return fetch(`${config.API_ENDPOINT}/users`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `bearer ${TokenService.getToken()}`
+            }
+        })
+        .then(res => 
+            (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+        )
+    },
 }
 
 
