@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSeedling } from '@fortawesome/free-solid-svg-icons' 
 
@@ -11,7 +10,7 @@ export default function Footer() {
                 <FontAwesomeIcon icon={faSeedling} />
             </div>
             <div className="credit">
-                <Link to ="https://www.katiewrennhansen.com">katiewrennhansen</Link>
+                <a href ="https://www.katiewrennhansen.com" target="_blank" rel="noopener noreferrer" >katiewrennhansen</a>
             </div>
         </footer>
     )
