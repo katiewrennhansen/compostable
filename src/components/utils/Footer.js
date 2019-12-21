@@ -6,9 +6,13 @@ import { faSeedling } from '@fortawesome/free-solid-svg-icons'
 export default function Footer() {
     return (
         <footer>
-            <FontAwesomeIcon icon={faSeedling} />
-            <h2>Compostable</h2>
-            <Link to ="https://www.katiewrennhansen.com">katiewrennhansen</Link>
+            <div className="footer-logo">
+                <h2>Compostable</h2>
+                <FontAwesomeIcon icon={faSeedling} />
+            </div>
+            <div className="credit">
+                <Link to ="https://www.katiewrennhansen.com">katiewrennhansen</Link>
+            </div>
         </footer>
     )
 }

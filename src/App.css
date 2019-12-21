@@ -464,6 +464,16 @@ footer {
     color: lightgreen;
 }
 
+footer h2 {
+    color: white;
+    display: inline;
+    padding-right: 10px;
+}
+
+.credit {
+    padding-top: 30px;
+}
+
 footer a {
     color: rgba(144, 238, 144, 0.475);
 }
